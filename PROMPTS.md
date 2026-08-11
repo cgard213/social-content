@@ -12,19 +12,30 @@ can see your files. Not a normal Claude chat, and not a terminal.
 Once, the very first time.
 
 ```
-This folder is a video toolkit. Read SETUP.md, then get me set up.
+This folder is a video toolkit. Read SETUP.md and .claude/skills/create-social-
+content/SKILL.md, then set me up. Ask me one question at a time and wait for my
+answer. I am not technical and I will not be running commands, so if something
+is broken, tell me what it means for me rather than what the error said.
 
-Confirm the create-social-content skill is available to you. If it is not, read
-.claude/skills/create-social-content/SKILL.md yourself and follow it directly
-when I ask for a new project.
+First, check the folder over. Confirm you can see the create-social-content
+skill, and confirm ffmpeg is here and can burn subtitles. Say plainly if
+anything is missing.
 
-Check that ffmpeg is here and that it can burn subtitles, and tell me in plain
-language whether anything is missing. Assume I will not be fixing it myself.
+Second, my brand. Ask whether I already have a brand guide or want you to build
+one from my website. If I give you a website, search for it first and then read
+it, pull out my colors and my typeface, show me what you found, and let me
+correct it before you save anything. Then ask me for the fixed line that goes on
+every cover image, and how I sound when I write. Put all of it in BRAND.md.
 
-Then walk me through the two setup questions from the skill, one at a time: my
-brand guide, and which transcription I want. Do not ask them both at once.
+Third, transcription. Ask which I want and give me the tradeoff plainly:
+ElevenLabs is more accurate and the account is free for about 30 minutes of
+footage a month, local is free forever but needs a 430 MB download. Walk me
+through the steps for whichever I pick, then check it actually worked before you
+tell me it did. Save my answer in SETTINGS.md.
 
-Finish by telling me the one thing I type to start a video.
+When that is all done, explain how this works from here: what I type to start a
+video, where I put the clip, and what I get back at the end. Then offer to make
+my first project right now.
 ```
 
 ---

@@ -97,6 +97,23 @@ Write `SETTINGS.md` with what they chose:
 
 They can switch later by asking. Set up the other one, change the line.
 
+### 1c. Explain it, then start
+
+Setup is done. Before going further, tell them how this works from here, in four or five
+lines and no more:
+
+- Type `/create-social-content` to start a video. If typing that does nothing in their
+  build, "start a new social content project" does the same thing.
+- You will ask what to call it and make a folder for it.
+- They drop their clip in that folder's `raw/`.
+- You cut it, stop once to show them the cut, then finish it.
+- Three files come back: the reel, a cover image, and the captions written for
+  Instagram, TikTok and YouTube.
+
+Then offer to make their first project right now rather than making them start over.
+If they say yes, go to step 2. If they say later, stop cleanly and tell them the folder
+is ready whenever they are.
+
 ## Step 2. Name the project
 
 Ask:
