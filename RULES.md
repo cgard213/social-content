@@ -26,6 +26,12 @@ These came from a few hundred reels and are true regardless of what you are maki
 - Every word on screen needs high contrast against whatever is behind it. When unsure,
   put a solid plate behind it. Check it over the brightest frame, not the average one.
 - Re-check audio after every step that touches video. It gets dropped silently.
+- Fade times in a trimmed segment are in SOURCE time, not segment time. Writing them
+  from zero silences the whole segment and the file looks perfectly normal.
+- Audio checks test for quiet, not for `-inf`. A silenced track reads as -91 dB and
+  sails past a check that only looks for `-inf`.
+- A QC still with no caption usually means you landed in the two-frame gap between
+  cues, not that the burn failed. Nudge the timestamp before investigating.
 - Judge the cover by `work/cover_gridcrop.png`, never by the full-height file. The grid
   loses the top and bottom 285 pixels and that is where covers get ruined.
 - Pull the cover frame from the cut before captions are burned. A frame with a caption

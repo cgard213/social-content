@@ -111,16 +111,26 @@ Write `work/edl.json`:
 
 ## 5. Cut, then stop
 
-For each range, with `DUR` computed as `end - start`:
+For each range:
 
 ```bash
 ffmpeg -y -i work/source.mp4 -ss <START> -to <END> \
-  -af "afade=t=in:st=0:d=0.02,afade=t=out:st=<DUR-0.02>:d=0.02" \
+  -af "afade=t=in:st=<START>:d=0.02,afade=t=out:st=<END - 0.02>:d=0.02" \
   -c:v libx264 -preset veryfast -crf 18 -pix_fmt yuv420p \
   -c:a aac -ar 48000 -ac 2 work/seg_<NN>.mp4
 ```
 
-`-ss` goes after `-i`. Before `-i` it seeks by keyframe and your cut points drift.
+Two things about that command, both of which have silently ruined a cut:
+
+**`-ss` goes after `-i`.** Before `-i` it seeks to the nearest keyframe and your cut
+points drift by up to a tenth of a second, which is enough to clip a word.
+
+**The fade times are in SOURCE time, not segment time.** With `-ss` after `-i` the
+filter graph still sees the original timestamps, so a fade written as
+`st=0 ... st=<DUR-0.02>` fires near the start of the whole recording, long before your
+segment, and silences the entire clip. It produces a perfectly normal looking file with
+a dead audio track. Use the range's own start and end, as above. `asetpts=PTS-STARTPTS`
+does not fix this, so do not reach for it.
 
 Concat with the demuxer, then normalize loudness in one pass:
 
@@ -166,12 +176,22 @@ ffprobe -v error -show_entries stream=width,height,codec_type -of csv out/reel.m
 ffmpeg -i out/reel.mp4 -af volumedetect -f null - 2>&1 | grep mean_volume
 ```
 
-Dimensions must be 1080x1920. Both a video and an audio stream must be present. Mean
-volume must not be `-inf`, which would mean the audio was dropped somewhere.
+Dimensions must be 1080x1920 and both a video and an audio stream must be present.
+
+**Mean volume must be louder than about -40 dB.** Do not just check it is not `-inf`.
+A silenced track reads as roughly -91 dB, which passes a naive check and sounds like
+nothing at all. If you see -91, the fades in step 5 were written in segment time instead
+of source time and every segment is silent. Anything under -40 means stop and find out
+why rather than carrying on to the cover.
 
 Pull one still from a moment where the caption sits over the brightest part of the
 frame, and look at it. Captions that read fine over a dark shirt disappear over a
 window.
+
+If a still comes back with no caption on it at all, check the cue times in
+`work/captions.ass` before assuming the burn failed. Cues are separated by two frames of
+deliberate gap, and a still grabbed on a round number like `-ss 22` lands in one
+surprisingly often. Nudge by a few tenths and look again.
 
 ## 9. Social captions
 
