@@ -1,0 +1,61 @@
+{
+  "manifest_version": "0.3",
+  "name": "elevenlabs-stt",
+  "display_name": "ElevenLabs transcription",
+  "version": "1.0.0",
+  "description": "Transcribe audio with ElevenLabs Scribe and write word-level timings to JSON.",
+  "long_description": "Adds one tool, transcribe_audio, for the social-content folder. It reads an audio or video file from your working folder, sends it to ElevenLabs Scribe, and writes word-level timings to JSON next to it. Word boundaries from Scribe are measured rather than inferred, so cuts land cleaner than they do with the local model.",
+  "author": {
+    "name": "Chad Gardner"
+  },
+  "license": "MIT",
+  "keywords": ["transcription", "video", "captions", "elevenlabs"],
+  "server": {
+    "type": "node",
+    "entry_point": "server/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/server/index.js"],
+      "env": {
+        "ELEVENLABS_API_KEY": "${user_config.api_key}",
+        "MEDIA_ROOT": "${user_config.working_folder}",
+        "ELEVENLABS_MODEL_ID": "${user_config.model_id}"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "transcribe_audio",
+      "description": "Transcribe an audio or video file and write word-level timings to JSON."
+    }
+  ],
+  "user_config": {
+    "api_key": {
+      "type": "string",
+      "title": "ElevenLabs API key",
+      "description": "From your profile menu at elevenlabs.io. The free tier covers about 30 minutes of audio a month.",
+      "sensitive": true,
+      "required": true
+    },
+    "working_folder": {
+      "type": "directory",
+      "title": "Working folder",
+      "description": "The social-content folder on your Desktop. Cowork sees it at a different path than your Mac does, so the extension needs to know where it really lives.",
+      "required": true
+    },
+    "model_id": {
+      "type": "string",
+      "title": "Scribe model",
+      "description": "Leave as is unless ElevenLabs changes model names.",
+      "default": "scribe_v2",
+      "required": false
+    }
+  },
+  "compatibility": {
+    "claude_desktop": ">=0.10.0",
+    "platforms": ["darwin", "win32"],
+    "runtimes": {
+      "node": ">=18.0.0"
+    }
+  }
+}

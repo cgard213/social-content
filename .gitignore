@@ -1,0 +1,14 @@
+# Project folders. Footage and renders, never committed.
+[0-9][0-9]-[0-9][0-9]_*/
+
+# Written by the skill on first run, records which transcription was chosen
+SETTINGS.md
+
+# The local transcription model, about 300 MB, dropped in by hand
+tools/whisper-small.en/
+tools/.venv/
+tools/__pycache__/
+
+# Fonts are licensed per person, everyone brings their own
+fonts/*.ttf
+fonts/*.otf
