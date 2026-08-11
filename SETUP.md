@@ -149,8 +149,25 @@ better than the first, which is most of why this works.
 
 ## When it gets something wrong
 
-Tell it what you wanted and ask it to add that to `RULES.md`.
+Tell it what you wanted, then:
+
+```
+Add that to RULES.md so it does not happen again.
+```
+
+Say the complaint however it comes out of your head. "You cut me off mid-sentence at the
+end, I wanted the last word to breathe" is a perfectly good rule. It does not have to
+sound technical.
+
+Wait until the same thing has annoyed you twice before you write it down. Once is bad
+luck, twice is a pattern, and a rules file full of one-offs stops being worth reading.
 
 That file is the point of the whole thing. It starts nearly empty and fills up with the
 specific things you care about, which is how the tool stops making the same mistake
 twice. After five or six videos it will be doing things you no longer have to ask for.
+
+## If it does something odd
+
+Ask what it did and why before telling it to try again. It will usually name the problem
+itself, and the answer is often that `RULES.md` or `BRAND.md` says one thing while you
+meant another.
