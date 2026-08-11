@@ -12,7 +12,8 @@ Runs inside Claude Desktop's Cowork. You will not type a single command.
 2. Unzip onto your Desktop and rename the folder to `social-content`. GitHub adds
    `-main` to the name and you do not want that.
 3. Open Claude Desktop, click Cowork, point it at the folder.
-4. Open `PROMPTS.md` and paste the first prompt.
+4. Paste in the setup prompt from [SETUP.md](SETUP.md). It is the only thing you have to
+   copy.
 
 Full instructions are in [SETUP.md](SETUP.md). Read that one, not this one.
 
@@ -24,7 +25,7 @@ and npm, and nothing else, so the browser download is the way in.
 | | |
 |---|---|
 | `SETUP.md` | Start here. The whole thing in plain language |
-| `PROMPTS.md` | The two things you copy and paste |
+| `PROMPTS.md` | The same prompts on one page, for when you forget one |
 | `BRAND.md` | Your colors, font, cover line and voice. Fill it once |
 | `RULES.md` | Corrections you have made. This is the part that matters |
 | `PROCEDURE.md` | The editing steps. For the model, not for you |

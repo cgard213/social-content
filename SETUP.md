@@ -11,24 +11,50 @@ so a month from now you can still find the raw file that went with a reel.
 
 ## What you need
 
-Claude Desktop, with Cowork. That is the whole list.
+Claude Desktop, with Cowork. That is the only thing you have to have.
+
+Optionally, an ElevenLabs account. It is free, it takes about a minute, and no card is
+involved. It transcribes your audio more accurately than the built-in option, which
+means the cuts land cleaner. Setup asks you which one you want and there is a local
+option that needs no account at all, so you can skip this and decide later.
 
 ## Setup
 
-1. Go to **github.com/cgard213/social-content**. Click the green **Code** button, then
-   **Download ZIP**.
-2. Unzip it onto your Desktop and rename the folder to `social-content`. GitHub adds
-   `-main` to the end of the name and you do not want that.
-3. Open Claude Desktop, click Cowork, point it at that folder.
-4. Open `PROMPTS.md`, copy the first prompt, paste it in.
+**1. Get the folder.** Go to **github.com/cgard213/social-content**, click the green
+**Code** button, then **Download ZIP**.
 
-It checks the folder over and then asks you a few questions about your brand and how you
-want your audio transcribed. Everything below is what it will ask, if you would rather
-read ahead.
+**2. Unzip it onto your Desktop** and rename the folder to `social-content`. GitHub adds
+`-main` to the end of the name and you do not want that.
+
+**3. Open Claude Desktop, click Cowork, and point it at that folder.**
+
+**4. Paste this in:**
+
+```
+This folder is a video toolkit. Read SETUP.md, then get me set up.
+
+Confirm the create-social-content skill is available to you. If it is not, read
+.claude/skills/create-social-content/SKILL.md yourself and follow it directly
+when I ask for a new project.
+
+Check that ffmpeg is here and that it can burn subtitles, and tell me in plain
+language whether anything is missing. Assume I will not be fixing it myself.
+
+Then walk me through the two setup questions from the skill, one at a time: my
+brand guide, and which transcription I want. Do not ask them both at once.
+
+Finish by telling me the one thing I type to start a video.
+```
+
+That is the last time you have to copy anything. It checks the folder over, asks you a
+few questions, and hands you back one command you will use from then on.
+
+The rest of this page is what it is going to ask, in case you would rather read ahead
+than think on the spot.
 
 One thing that will not work, in case you try it: asking Cowork to download the project
 for you. It can only reach a short list of approved addresses and GitHub is not one of
-them. The browser download above is the way in.
+them. The browser download in step 1 is the way in.
 
 ## Question one: your brand
 
@@ -53,7 +79,8 @@ and you can switch later by asking.
 ### ElevenLabs, the accurate one
 
 Better word timings, so cuts land cleaner and captions sit tighter against the audio.
-Free for about 30 minutes of footage a month, then roughly 22 cents an hour.
+The account is free and asks for no card. It covers about 30 minutes of footage a month,
+and only if you go past that does it cost anything, at roughly 22 cents an hour.
 
 1. Go to elevenlabs.io and make a free account.
 2. Click your profile, then API keys, and copy the key.
