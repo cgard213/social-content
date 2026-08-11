@@ -7,7 +7,8 @@ Run it once on a machine with internet, then hand out the folder with the model 
 inside. People using the tool never run this, or anything else in a terminal.
 
 It creates tools/.venv, installs huggingface_hub into it, and pulls the CTranslate2
-build of Whisper small.en into tools/whisper-small.en (about 250 MB).
+build of Whisper small.en into tools/whisper-small.en (about 480 MB on disk; it
+loads quantized to int8 so it uses roughly half that in memory).
 
 This cannot happen inside Cowork. Its network allowlist covers Anthropic, pypi and npm,
 so faster-whisper installs fine in there but the weights, which come from Hugging Face,
@@ -43,7 +44,7 @@ def main():
     run(VENV_PY, "-m", "pip", "install", "--quiet", "--upgrade", "pip")
     run(VENV_PY, "-m", "pip", "install", "--quiet", "huggingface_hub")
 
-    print(f"Downloading {REPO} (about 250 MB, this takes a few minutes) ...")
+    print(f"Downloading {REPO} (about 480 MB, this takes a few minutes) ...")
     code = (
         "from huggingface_hub import snapshot_download;"
         f"p=snapshot_download({REPO!r}, local_dir={str(DEST)!r});"

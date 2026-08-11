@@ -15,8 +15,10 @@ Claude Desktop, with Cowork. That is the whole list.
 
 ## Setup
 
-1. Open the Google Drive folder you were sent and download `social-content.zip`.
-2. Unzip it onto your Desktop. Keep the folder named `social-content`.
+1. Go to **github.com/cgard213/social-content**. Click the green **Code** button, then
+   **Download ZIP**.
+2. Unzip it onto your Desktop and rename the folder to `social-content`. GitHub adds
+   `-main` to the end of the name and you do not want that.
 3. Open Claude Desktop, click Cowork, point it at that folder.
 4. Open `PROMPTS.md`, copy the first prompt, paste it in.
 
@@ -25,8 +27,8 @@ want your audio transcribed. Everything below is what it will ask, if you would 
 read ahead.
 
 One thing that will not work, in case you try it: asking Cowork to download the project
-for you. It can only reach a short list of approved addresses and Google Drive is not
-one of them. The browser download above is the way in.
+for you. It can only reach a short list of approved addresses, and neither GitHub nor
+Google Drive is on it. The browser download above is the way in.
 
 ## Question one: your brand
 
@@ -69,8 +71,8 @@ Runs on your own machine. Nothing leaves it, no account, no card, free for good.
 timings are a little looser than ElevenLabs, which mostly shows up as a cut landing a
 hair early or late.
 
-1. In the same Drive folder, download `whisper-small.en.zip`. It is about 300 MB, so
-   Drive will warn that it cannot scan it for viruses. Click download anyway.
+1. Download `whisper-small.en.zip` from the Google Drive folder you were sent. It is
+   about 430 MB, so Drive will say it cannot scan it for viruses. Download anyway.
 2. Unzip it.
 3. Drag the `whisper-small.en` folder into the `tools` folder in here.
 

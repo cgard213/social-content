@@ -74,7 +74,7 @@ Ask, exactly like this:
 > a month, then roughly 22 cents an hour)
 >
 > **Local** (free forever, nothing leaves your machine, word timings are a little
-> looser. One 300 MB download to set up)
+> looser. One 430 MB download to set up)
 
 Then follow whichever they pick, using the steps in `SETUP.md`. Both are a download and
 a couple of clicks. Neither needs a terminal. Read them the steps and wait until they

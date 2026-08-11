@@ -6,13 +6,18 @@ cover image, and writes the caption three ways for Instagram, TikTok and YouTube
 
 Runs inside Claude Desktop's Cowork. You will not type a single command.
 
-## Start
+## Get it
 
-1. Put this folder on your Desktop, named `social-content`.
-2. Open Claude Desktop, click Cowork, point it at the folder.
-3. Open `PROMPTS.md` and paste the first prompt.
+1. Click the green **Code** button above, then **Download ZIP**.
+2. Unzip onto your Desktop and rename the folder to `social-content`. GitHub adds
+   `-main` to the name and you do not want that.
+3. Open Claude Desktop, click Cowork, point it at the folder.
+4. Open `PROMPTS.md` and paste the first prompt.
 
 Full instructions are in [SETUP.md](SETUP.md). Read that one, not this one.
+
+Do not bother asking Cowork to clone this for you. Its sandbox reaches Anthropic, pypi
+and npm, and nothing else, so the browser download is the way in.
 
 ## What is in here
 
