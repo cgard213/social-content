@@ -27,8 +27,8 @@ want your audio transcribed. Everything below is what it will ask, if you would 
 read ahead.
 
 One thing that will not work, in case you try it: asking Cowork to download the project
-for you. It can only reach a short list of approved addresses, and neither GitHub nor
-Google Drive is on it. The browser download above is the way in.
+for you. It can only reach a short list of approved addresses and GitHub is not one of
+them. The browser download above is the way in.
 
 ## Question one: your brand
 
@@ -71,8 +71,8 @@ Runs on your own machine. Nothing leaves it, no account, no card, free for good.
 timings are a little looser than ElevenLabs, which mostly shows up as a cut landing a
 hair early or late.
 
-1. Download `whisper-small.en.zip` from the Google Drive folder you were sent. It is
-   about 430 MB, so Drive will say it cannot scan it for viruses. Download anyway.
+1. On the same GitHub page, click **Releases** in the right-hand column, then download
+   `whisper-small.en.zip`. It is about 430 MB and will take a few minutes.
 2. Unzip it.
 3. Drag the `whisper-small.en` folder into the `tools` folder in here.
 
