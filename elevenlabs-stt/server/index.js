@@ -126,9 +126,12 @@ async function transcribe({ file_path, output_path }) {
 
   let res;
   try {
+    // xi-api-key ONLY. Sending Authorization as well is a hard 401 with
+    // "Only one of xi-api-key and authorization headers must be provided", which
+    // reads like a bad key and is not one.
     res = await fetch(ENDPOINT, {
       method: "POST",
-      headers: { "xi-api-key": API_KEY, Authorization: `Bearer ${API_KEY}` },
+      headers: { "xi-api-key": API_KEY },
       body: form,
     });
   } catch (e) {
@@ -137,10 +140,27 @@ async function transcribe({ file_path, output_path }) {
 
   if (!res.ok) {
     const body = await res.text().catch(() => "");
-    if (res.status === 401) return err("ElevenLabs rejected the API key.");
-    if (res.status === 429)
-      return err("Out of ElevenLabs credits for this month. Fall back to the local model.");
-    return err(`ElevenLabs returned ${res.status}. ${body.slice(0, 300)}`);
+    let detail = "";
+    try {
+      const parsed = JSON.parse(body);
+      detail = parsed?.detail?.message || parsed?.detail?.status || "";
+    } catch {
+      detail = body.slice(0, 300);
+    }
+    if (res.status === 401) {
+      return err(
+        `ElevenLabs refused the request: ${detail || "unauthorized"}\n\n` +
+          "If it mentions a missing permission, the key is real but scoped too " +
+          "narrowly. Make a new key with speech to text enabled."
+      );
+    }
+    if (res.status === 429) {
+      return err(
+        "Out of ElevenLabs credits for this month. Switch to the local model, or " +
+          "wait for the monthly reset."
+      );
+    }
+    return err(`ElevenLabs returned ${res.status}. ${detail}`);
   }
 
   const data = await res.json();
@@ -184,6 +204,15 @@ function send(msg) {
   process.stdout.write(JSON.stringify(msg) + "\n");
 }
 
+// Requests still awaiting a response. A transcription takes seconds, and if stdin
+// closes while one is in flight we must finish it rather than exit mid-call.
+let inFlight = 0;
+let stdinClosed = false;
+
+function maybeExit() {
+  if (stdinClosed && inFlight === 0) process.exit(0);
+}
+
 async function handle(msg) {
   const { id, method, params } = msg;
   if (id === undefined) return; // notification, nothing to answer
@@ -215,12 +244,17 @@ async function handle(msg) {
           error: { code: -32602, message: `Unknown tool: ${name}` },
         });
       }
+      inFlight++;
       try {
         const result = await transcribe((params && params.arguments) || {});
-        return send({ jsonrpc: "2.0", id, result });
+        send({ jsonrpc: "2.0", id, result });
       } catch (e) {
-        return send({ jsonrpc: "2.0", id, result: err(`Failed: ${e.message}`) });
+        send({ jsonrpc: "2.0", id, result: err(`Failed: ${e.message}`) });
+      } finally {
+        inFlight--;
+        maybeExit();
       }
+      return;
     }
 
     default:
@@ -248,4 +282,7 @@ process.stdin.on("data", (chunk) => {
     }
   }
 });
-process.stdin.on("end", () => process.exit(0));
+process.stdin.on("end", () => {
+  stdinClosed = true;
+  maybeExit();
+});

@@ -94,7 +94,9 @@ The account is free and asks for no card. It covers about 30 minutes of footage 
 and only if you go past that does it cost anything, at roughly 22 cents an hour.
 
 1. Go to elevenlabs.io and make a free account.
-2. Click your profile, then API keys, and copy the key.
+2. Click your profile, then API keys, and copy the key. If it offers to restrict what
+   the key can do, leave speech to text switched on. A key without it looks completely
+   normal and then fails with a permissions error the first time you use it.
 3. Back here, double-click `elevenlabs-stt.mcpb`. Claude Desktop opens an install
    window and asks for two things: paste the key, and pick this folder.
 4. Quit Claude Desktop and open it again. It will not work until you do, and this is
